@@ -26,7 +26,7 @@ data <- read_csv2("/Users/alexiskolecki/Repos/Data/data.txt")
 data
 ```
 
-### Part 3 : Read in data2.txt 
+### Part 2 : Read in data2.txt 
 
 ```{r}
 data2 <- read_delim("/Users/alexiskolecki/Repos/Data/data2.txt", delim = '6',
@@ -36,6 +36,51 @@ data2
 
 ## Task 2 
 
+### Part 1: Take a glimpse of the trailblazer data set to show that you have read in the data correctly 
+
+```{r}
+trailblazer <- read_csv("/Users/alexiskolecki/Repos/Data/trailblazer.csv")
+trailblazer
+```
+
+### Part 2 : Pivot the data so that you have columns for player, game, location, points. Display the first five rows of your data set. 
+
+```{r}
+trailblazer_longer <- pivot_longer(trailblazer, cols = 2:11,names_to = "Games", values_to = "Points")
+trailblazer_longer <- separate_wider_delim(trailblazer_longer, Games, delim ="_" ,
+                                names = c("Games", "Location"))
+                     
+trailblazer_longer
+```
+
+### Part 3 : Which players scored more on average when playing at home verus away? 
+
+```{r}
+trailblazer_longer|> pivot_wider(names_from = Location, values_from = Points) |>
+  group_by(Player)|>
+  summarize(mean_home = mean(Home, na.rm = TRUE), 
+            mean_away = mean(Away, 
+          na.rm =TRUE), difference = mean_home - mean_away) |>
+  arrange(desc(difference))
+  
+
+```
+On average, Jusuf Nurkic scored more points at home than away through the first 10 games of the season. 
+
 ## Task 3
 
-## Task 4
+### Part A : Example the Errors in the code that co worker sent you 
+
+Explain the <NULL>, <dbl [52]> and <list> means. 
+
+### Part B : Recreate the Table
+
+```{r}
+penguins
+
+
+```
+## Task 4 
+
+### Replace NA with correct bill values
+
