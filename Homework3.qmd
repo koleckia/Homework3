@@ -1,0 +1,41 @@
+---
+title: "HW3_BaseRProgramming"
+format: pdf
+editor: visual
+---
+
+## Task 1 
+
+### Part A: Read in data.txt file 
+
+
+```{r}
+install.packages('tidyverse')
+install.packages('palmerpenguins')
+library(tidyverse)
+library(palmerpenguins)
+
+data_v1 <- read_csv("/Users/alexiskolecki/Repos/Data/data.txt")
+data_v1
+?read_csv()
+```
+We can not use this specific read_csv() to read this data since the data is seperated by semicolons and not commas or tabs. 
+
+```{r}
+data <- read_csv2("/Users/alexiskolecki/Repos/Data/data.txt")
+data
+```
+
+### Part 3 : Read in data2.txt 
+
+```{r}
+data2 <- read_delim("/Users/alexiskolecki/Repos/Data/data2.txt", delim = '6',
+                    col_types = "fdc")
+data2
+```
+
+## Task 2 
+
+## Task 3
+
+## Task 4
