@@ -10,14 +10,11 @@ editor: visual
 
 
 ```{r}
-install.packages('tidyverse')
-install.packages('palmerpenguins')
 library(tidyverse)
 library(palmerpenguins)
 
 data_v1 <- read_csv("/Users/alexiskolecki/Repos/Data/data.txt")
 data_v1
-?read_csv()
 ```
 We can not use this specific read_csv() to read this data since the data is seperated by semicolons and not commas or tabs. 
 
@@ -71,16 +68,30 @@ On average, Jusuf Nurkic scored more points at home than away through the first 
 
 ### Part A : Example the Errors in the code that co worker sent you 
 
-Explain the <NULL>, <dbl [52]> and <list> means. 
+Whats going on here? Explain the <NULL>, <dbl [52]> and <list> means. 
+
+* There is an error being caused because thre are duplicate rows in the data file. 
+
+* The <NULL> means that that spot in the table is empty and there are no values for this spot in the table.
+
+* The <list> refers to a list object in R.
+
+* The <dbl[52]> means a numeric data type that can be up to 52 values. 
 
 ### Part B : Recreate the Table
 
 ```{r}
 penguins
 
+penguins |>
+group_by(species, island) |>
+  summarise(count = n())|>
+  pivot_wider(names_from = island, values_from = count)
 
 ```
-## Task 4 
+## Task 4
 
 ### Replace NA with correct bill values
+
+
 
